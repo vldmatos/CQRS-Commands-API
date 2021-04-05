@@ -1,7 +1,8 @@
-﻿using Commads.API.Domain.Commands.Handlers;
-using Commads.API.Domain.Commands.Requests;
+﻿using Commads.API.Domain.Commands.Requests;
 using Commads.API.Domain.Commands.Responses;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Commads.API.Controllers
 {
@@ -11,14 +12,14 @@ namespace Commads.API.Controllers
 	{
 		[HttpPost]
 		[Route("create")]
-		public CreateUserResponse Create
+		public Task<CreateUserResponse> Create
 			(
-				[FromServices]ICreateUserHandler handler,
+				[FromServices]IMediator mediator,
 				[FromBody]CreateUserRequest command
 
 			)
 		{
-			return handler.Handle(command);
+			return mediator.Send(command);
 		}
 	}
 }

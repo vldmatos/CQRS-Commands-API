@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Commads.API.Domain.Commands.Responses;
+using MediatR;
 
 namespace Commads.API.Domain.Commands.Requests
 {
-	public class CreateUserRequest
+	public class CreateUserRequest : IRequest<CreateUserResponse>
 	{
 		public string Name { get; init; }
 

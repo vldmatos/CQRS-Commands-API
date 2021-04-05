@@ -1,10 +1,11 @@
-using Commads.API.Domain.Commands.Handlers;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace Commads.API
 {
@@ -19,8 +20,7 @@ namespace Commads.API
 
 		public void ConfigureServices(IServiceCollection services)
 		{
-
-			services.AddTransient<ICreateUserHandler, CreateUserHandler>();
+			services.AddMediatR(Assembly.GetExecutingAssembly());
 			services.AddControllers();
 			services.AddSwaggerGen(configuration =>
 			{
